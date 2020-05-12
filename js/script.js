@@ -68,6 +68,7 @@ typeFiltreDict['Melee'] = 'range';
 typeFiltreDict['R'] = 'rarity';
 typeFiltreDict['SR'] = 'rarity';
 typeFiltreDict['SSR'] = 'rarity';
+typeFiltreDict['USR'] = 'rarity';
 typeFiltreDict['DPS'] = 'role';
 typeFiltreDict['TANK'] = 'role';
 typeFiltreDict['STUN'] = 'role';
@@ -127,6 +128,7 @@ var Rock = createNinja('Rock Lee',0,'A','Normal','Normal','R',['BURST'],'Rock.pn
 var Sakura = createNinja('Sakura Haruno',600,'I','Normal','Normal','R',['SUPPORT'],'Sakura.png');
 var Sasori = createNinja('Sasori',600,'A','Air','Air','SR',['AOE'],'Sasori.png');
 var Sasuke = createNinja('Sasuke Uchiha',0,'A','Foudre','Foudre','SR',['AOE'],'Sasuke.png');
+var Sasukes = createNinja('Sasuke Six Path',0,'A','God','God','USR',['BURST', 'DPS'],'Sasukes.png');
 var Shikamaru = createNinja('Shikamaru Nara',600,'I','Terre','Terre','R',['STUN', 'SUPPORT'],'Shikamaru.png')
 var Shino = createNinja('Shino Aburame',600,'I','Terre','Terre','SR',['DPS'],'Shino.png');;
 var Shisui = createNinja('Shisui Uchiha',0,'A','Feu','Feu','SSR',['BURST'],'Shisui.png');
@@ -202,6 +204,12 @@ function profilNinja(btn) {
 	document.getElementById("Page-Profil-Image-Attack").src = typeImageDict[ninja.attack];
 	document.getElementById("Page-Profil-Defense").innerHTML = 'Defense: ' + ninja.defense;
 	document.getElementById("Page-Profil-Image-Defense").src = typeImageDict[ninja.defense];
+	if (ninja.role.length == 1) {
+		document.getElementById("Page-Profil-Role").innerHTML = 'Role: ' + ninja.role[0];
+	}
+	else {
+		document.getElementById("Page-Profil-Role").innerHTML = 'Role: ' + ninja.role[0] + ' + ' + ninja.role[1];
+	}
 	var comboListe = document.getElementById("Page-Profil-Combo-List");
 	comboListe.innerHTML = "";
 	var h1;
@@ -399,6 +407,9 @@ $('input').mousedown(function(click){
 	}
 	else if (id == "Page-Menu-Filtre-SSR") {
 		filtre('SSR', click.which);
+	}
+	else if (id == "Page-Menu-Filtre-USR") {
+		filtre('USR', click.which);
 	}
 	else if (id == "Page-Menu-Filtre-DPS") {
 		filtre('DPS', click.which);
