@@ -1,0 +1,12 @@
+body
+{
+	background-color: black;
+	color: white;
+}
+
+input[type="image"]
+{
+	max-width: 72px;
+	max-height: 72px;
+	width: 200%;
+}
