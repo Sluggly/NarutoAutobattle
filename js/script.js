@@ -35,6 +35,7 @@ var statImageDict = [];
 var typeImageDict = [];
 var filtreDict = [];
 var typeFiltreDict = [];
+var rarityImageDict = [];
 
 // Initialisation des dictionnaires
 roleDict['DPS'] = [];
@@ -75,6 +76,10 @@ typeFiltreDict['STUN'] = 'role';
 typeFiltreDict['BURST'] = 'role';
 typeFiltreDict['AOE'] = 'role';
 typeFiltreDict['SUPPORT'] = 'role';
+rarityImageDict['R'] = 'src/R.png';
+rarityImageDict['SR'] = 'src/SR.png';
+rarityImageDict['SSR'] = 'src/SSR.png';
+rarityImageDict['USR'] = 'src/USR.png';
 
 // Variables globales
 var page = document.getElementById("Page-Menu");
@@ -113,6 +118,7 @@ var Kurenai = createNinja('Kurenai Yuhi',600,'I','Feu','Feu','SR',['SUPPORT', 'S
 var Kurotsuchi = createNinja('Kurotsuchi',600,'A','Eau','Terre','SR',['STUN', 'SUPPORT'],'Kurotsuchi.png');
 var Kushina = createNinja('Kushina Uzumaki',600,'I','Eau','Eau','SR',['SUPPORT'],'Kushina.png');
 var Madara = createNinja('Madara Uchiha',0,'F','Feu','Feu','SSR',['DPS', 'STUN'],'Madara.png');
+var Madaras = createNinja('Madara Six Path',0,'I','God','God','USR',['DPS', 'STUN'],'Madaras.png');
 var Maito = createNinja('Maito Gai',0,'F','Normal','Normal','SR',['BURST'],'Maito.png');
 var Mei = createNinja('Mei Terumi',600,'A','Eau','Eau','SR',['DPS', 'SUPPORT'],'Mei.png');
 var Minato = createNinja('Minato Namikaze',0,'A','Eau','Air','SSR',['ASSASSIN'],'Minato.png');
@@ -176,7 +182,7 @@ var Family = createCombo('Family', [Narutoj, Minato, Kushina]);
 var Mizu = createCombo('Mizukage Bodyguard', [Chojuro, Mei]);
 var Artistic = createCombo('Artistic', [Sasori, Deidara]);
 var WorkingShadow = createCombo('Working in the Shadow', [Zetsu, Kabuto, Madara, Obito, Pein]);
-var Akatsuki = createCombo('Akatsuki Quardrant', [Zetsu, Itachi, Deidara, Konan]);
+var Akatsuki = createCombo('Akatsuki Quadrant', [Zetsu, Itachi, Deidara, Konan]);
 var Ay_Bee = createCombo('Ay_Bee', [Ay, Killer]);
 var Itachi_Kisame = createCombo('Itachi_Kisame', [Itachi, Kisame]);
 var FiveHokage = createCombo('Five Hokages', [Hashirama, Tobirama, Minato, Hiruzen, Tsunade]);
@@ -204,6 +210,7 @@ function profilNinja(btn) {
 	document.getElementById("Page-Profil-Image-Attack").src = typeImageDict[ninja.attack];
 	document.getElementById("Page-Profil-Defense").innerHTML = 'Defense: ' + ninja.defense;
 	document.getElementById("Page-Profil-Image-Defense").src = typeImageDict[ninja.defense];
+	document.getElementById("Page-Profil-Rarity-Image").src = rarityImageDict[ninja.rarity];
 	if (ninja.role.length == 1) {
 		document.getElementById("Page-Profil-Role").innerHTML = 'Role: ' + ninja.role[0];
 	}
