@@ -10,3 +10,16 @@ input[type="image"]
 	max-height: 72px;
 	width: 200%;
 }
+
+button {
+  background-color: #555555;
+  border: none;
+  color: white;
+  height: 40px;
+  margin-top: 20px;
+  margin-left: 5px;
+  text-align: center;
+  display: inline-block;
+  border: 2px solid #4CAF50;
+  font-size: 24;
+}
