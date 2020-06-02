@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link href="css/style.css" rel="stylesheet">
 	<title>SLUGGLY NARUTO AUTOBATTLE GUIDE</title>
 </head>
@@ -30,7 +31,6 @@
 				<input id="Page-Menu-Filtre-SUPPORT" type="image" src="src/Support.png"/>
 				<input id="Page-Menu-Filtre-NEW" type="image" src="src/New.png"/>
 			</div>
-			<br>
 			<div style="display:flex; justify-content:center;">
 				<button id="Bouton-Toggle-Item-List">Item List</button>
 			</div>
@@ -98,13 +98,20 @@
 		<div id="Page-Profil-Item-Effects">
 		</div>
 		<h1 id="Page-Profil-Item-Fusion-List-Text" >Fusion List:</h1>
-		<div id="Page-Profil-Item-Fusion-List">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm" id="Page-Profil-Item-Fusion-List">
+				</div>
+				<div class="col-sm" id="Page-Profil-Item-Fusion-List2">
+				</div>
+			</div>
 		</div>
 		<h1 id="Page-Profil-Item-Fusion-Text" >Fusion:</h1>
 		<div id="Page-Profil-Item-Fusion">
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 	<script src="js/script.js"></script>
 </body>
 </html>

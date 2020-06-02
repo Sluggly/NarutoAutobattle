@@ -396,9 +396,18 @@ function profilItem(btn) {
 		document.getElementById("Page-Profil-Item-Fusion-Text").style.display = 'none';
 		var fusionListDiv = document.getElementById("Page-Profil-Item-Fusion-List");
 		fusionListDiv.style.display = 'block';
+		var fusionListDiv2 = document.getElementById("Page-Profil-Item-Fusion-List2");
+		fusionListDiv2.style.display = 'block';
 		document.getElementById("Page-Profil-Item-Fusion-List-Text").style.display = 'block';
 		fusionListDiv.innerHTML = "";
+		fusionListDiv2.innerHTML = "";
 		for (var j in item.required) {
+			if (j%2 == 0) {
+				var currentDiv = fusionListDiv;
+			}
+			else {
+				var currentDiv = fusionListDiv2;
+			}
 			var tmpItem = item.required[j];
 			var btn = document.createElement("input");
 			btn.type = "image";
@@ -408,10 +417,13 @@ function profilItem(btn) {
 				profilItem(this);
 			}
 			var br = document.createElement("br");
-			fusionListDiv.appendChild(btn);
+			var tmp = document.createElement('h1');
+			tmp.innerHTML = tmpItem.nom;
+			currentDiv.appendChild(tmp);
+			currentDiv.appendChild(btn);
 			var tmp = document.createElement('span');
 			tmp.innerHTML = " = ";
-			fusionListDiv.appendChild(tmp);
+			currentDiv.appendChild(tmp);
 			for (var k in tmpItem.fusion) {
 				var btn = document.createElement("input");
 				btn.type = "image";
@@ -420,18 +432,18 @@ function profilItem(btn) {
 				btn.onclick = function() {
 					profilItem(this);
 				}
-				fusionListDiv.appendChild(btn);
+				currentDiv.appendChild(btn);
 				if (k == 0) {
-					var tmp2 = document.createElement('span');
-					tmp2.innerHTML = " + ";
-					fusionListDiv.appendChild(tmp2);
+					var tmp = document.createElement('span');
+					tmp.innerHTML = " + ";
+					currentDiv.appendChild(tmp);
 				}
 			}
-			fusionListDiv.appendChild(br);
 		}
 	}
 	else {
 		document.getElementById("Page-Profil-Item-Fusion-List").style.display = 'none';
+		document.getElementById("Page-Profil-Item-Fusion-List2").style.display = 'none';
 		document.getElementById("Page-Profil-Item-Fusion-List-Text").style.display = 'none';
 		var fusionDiv = document.getElementById("Page-Profil-Item-Fusion");
 		fusionDiv.style.display = 'block';
@@ -648,7 +660,7 @@ function afficherNinjaList() {
 		}
 		div.appendChild(btn);
 		compteur++;
-		if (compteur == 8) {
+		if (compteur == 10) {
 			var br = document.createElement("br");
 			div.appendChild(br);
 			compteur = 0;
