@@ -8,6 +8,7 @@ class Ninja {
 		this.defense = def;
 		this.rarity = rar;
 		this.role = rol;
+		this.spells = [];
 		this.combo = [];
 		this.src = './src/' + icon;
 	}
@@ -23,6 +24,28 @@ class Combo {
 		this.nom = name;
 		this.ninjalist = list;
 		this.type = typ;
+		this.desc = [];
+	}
+}
+
+// Classe Spell
+class Spell {
+	constructor(name, des, typ) {
+		this.nom = name;
+		this.type = typ;
+		this.desc = des;
+	}
+}
+
+// Classe Item
+class Item {
+	constructor(name, rar, fus, icon, eff) {
+		this.nom = name;
+		this.rarity = rar;
+		this.effects = eff;
+		this.fusion = fus;
+		this.required = [];
+		this.src = './src/' + icon;
 	}
 }
 
@@ -31,6 +54,8 @@ var filtreList = [];
 var roleDict = [];
 var ninjaDict = [];
 var ninjaList = [];
+var itemList = [];
+var itemDict = [];
 var statDict = [];
 var statImageDict = [];
 var typeImageDict = [];
@@ -85,16 +110,29 @@ rarityImageDict['SSR'] = 'src/SSR.png';
 rarityImageDict['USR'] = 'src/USR.png';
 
 // Variables globales
-var page = document.getElementById("Page-Menu");
+var page = document.getElementById("Page-Menu-Ninja");
 var old = true;
 var displayedNinja = Hinata;
+var displayedItem = Samehada;
 
 // Boutons
 var boutonVersionProfil = document.getElementById("Bouton-Profil-Toggle-Combo");
+var boutonItemListToggle = document.getElementById("Bouton-Toggle-Item-List");
+var boutonNinjaListToggle = document.getElementById("Bouton-Toggle-Ninja-List");
 
 // Clic sur le bouton qui change version profil
 boutonVersionProfil.onclick = function(){
 	changeVersion();
+}
+
+// Clic sur bouton affiche Item list
+boutonItemListToggle.onclick = function(){
+	changePage('Page-Menu-Item');
+}
+
+// Clic sur bouton affiche Item list
+boutonNinjaListToggle.onclick = function(){
+	changePage('Page-Menu-Ninja');
 }
 
 // Création des ninja
@@ -177,6 +215,13 @@ var Zetsu = createNinja('Zetsu',600,'A','Terre','Terre','SR',['DPS', 'SUPPORT'],
 var Unknown = createNinja('Unknown',0,'A','God','God','USR',[],'Unknown.png');
 }
 
+// Listes des spells
+{
+var Poongdun = createSpell(Asuma,'DPS','Poogdun Nomination','When hit, Levelx10 damage, 10 attacks, 250 range [100-1000] damage');
+var Hwadun = createSpell(Asuma,'','','');
+var Hwadun = createSpell(Asuma,'','','');
+}
+
 // Listes des combos
 {
 var Best = createCombo('Best', [Kiba, Choji], 'new');
@@ -251,6 +296,59 @@ var Strongest = createCombo('Strongest Ninjas', [Hashirama, Madara], 'both');
 var Uchiha = createCombo('Uchiha Clan', [Madara, Itachi, Shisui, Obito, Sasuke], 'old');
 }
 
+// Description des combos
+{
+
+}
+
+// Listes des items nouveaux
+{
+var Kunai = createItem('Kunai', 'R', ['None'], 'Kunai.png', ['150 Dmg']);
+var Metal = createItem('Metal Needle', 'R', ['None'], 'Metal.png', ['15% Attack Speed']);
+var Wisdom = createItem('Gloves of Wisdom', 'R', ['None'], 'Wisdom.png', ['30 Intelligence']);
+var Sealing = createItem('Sealing Gloves', 'R', ['None'], 'Sealing.png', ['9% Spell Damage']);
+var Fighter = createItem('Fighter Gloves', 'R', ['None'], 'Fighter.png', ['15 Armor']);
+var Helmet = createItem('Ninja Helmet', 'R', ['None'], 'Helmet.png', ['30 Strength']);
+var Boots = createItem('Ninja Boots', 'R', ['None'], 'Boots.png', ['30 Agility']);
+var Cloth = createItem('Ninja Cloth', 'R', ['None'], 'Cloth.png', ['3200 Hp']);
+var Thunder = createItem('Thunder Sword', 'SR', [Kunai,Kunai], 'Thunder.png', ['300 Dmg','Chance on hit to damage 6 units for (200+30*level) Damage']);
+var Raito = createItem('Raito Twin Swords', 'SR', [Kunai,Metal], 'Raito.png', ['150 Dmg','15% Attack Speed','Gain 1 temporary level at start of combat']);
+var Second = createItem('Second Sword', 'SR', [Kunai,Wisdom], 'Second.png', ['150 Dmg','30 Intelligence','Heal for 8% of the maximum health of killed enemy']);
+var Mace = createItem('Mace', 'SR', [Kunai,Sealing], 'Mace.png', ['150 Dmg','9% Spell Damage','On attack stun for 1.5s (11s cooldown)']);
+var Toad = createItem('Toad Skin', 'SR', [Kunai,Fighter], 'Toad.png', ['150 Dmg','15 Armor','Gain 10% health shield against physical damages']);
+var Iron = createItem('Iron Knuckle', 'SR', [Kunai,Helmet], 'Iron.png', ['150 Dmg','30 Strength','10% Armor penetration']);
+var Hiramekarei = createItem('Hiramekarei Sword', 'SR', [Kunai,Boots], 'Hiramekarei.png', ['150 Dmg','30 Agility','20% Damage increase']);
+var Reaper = createItem('Reaper', 'SR', [Kunai,Cloth], 'Reaper.png', ['150 Dmg','3200 Hp','When killed, deal 15% of maximum health as damage to enemy']);
+var Kurowasa = createItem('Kurowasa', 'SR', [Metal,Metal], 'Kurowasa.png', ['30% Attack Speed','On hit 15% to stun enemy for 0.8s']);
+var Cyclone = createItem('Cyclone Sword', 'SR', [Metal,Wisdom], 'Cyclone.png', ['15% Attack Speed','30 Intelligence','Cast 5s cyclone on the first enemy hit']);
+var Chil = createItem('Chilsung Sword', 'SR', [Metal,Sealing], 'Chil.png', ['15% Attack Speed','9% Spell Damage','12% Spell Evasion']);
+var Hokage = createItem('Hokage Coat', 'SR', [Metal,Fighter], 'Hokage.png', ['15% Attack Speed','15 Armor','Reduce attack speed of attacker by 15% for 3s (stackable)']);
+var Samehada = createItem('Samehada Sword', 'SR', [Metal,Helmet], 'Samehada.png', ['15% Attack Speed','30 Strength','On hit burns 3 mana and (200+5*level) health to enemy']);
+var Wave = createItem('Wave Line', 'SR', [Metal,Boots], 'Wave.png', ['15% Attack Speed','30 Agility','12% Evasion']);
+var Darkness = createItem('Darkness', 'SR', [Metal,Cloth], 'Darkness.png', ['15% Attack Speed','3200 Hp','Deals 15% of current health to the first attacker']);
+var Summon = createItem('Summon Sword', 'SR', [Wisdom,Wisdom], 'Summon.png', ['60 Intelligence','150% bonus physical damages against summons']);
+var Anbu = createItem('Anbu Mask', 'SR', [Wisdom,Sealing], 'Anbu.png', ['30 Intelligence','9% Spell Damage','Reduce skill cooldown by 12%']);
+var HokageHelmet = createItem('Hokage Helmet', 'SR', [Wisdom,Fighter], 'HokageHelmet.png', ['30 Intelligence','15 Armor','Gain 10% health shield against spell damages']);
+var Necklace = createItem('Necklace', 'SR', [Wisdom,Helmet], 'Necklace.png', ['30 Intelligence','30 Strength','Gain shield against spell damages of 5% of your max hp after killing an enemy (stackable)']);
+var Chain = createItem('Chain Sickle', 'SR', [Wisdom,Boots], 'Chain.png', ['30 Intelligence','30 Agility','Stun for 3s after dying']);
+var Arrow = createItem('Arrow', 'SR', [Wisdom,Cloth], 'Arrow.png', ['30 Intelligence','3200 Hp','60% to Bangkak-2 on hit (stackable)']);
+var Nuibari = createItem('Nuibari Sword', 'SR', [Sealing,Sealing], 'Nuibari.png', ['18% Spell Damage','30 Mana and burns mana for 5 on hit']);
+var Cloak = createItem('Cloak', 'SR', [Sealing,Fighter], 'Cloak.png', ['9% Spell Damage','15 Armor','15% spell resistance']);
+var Kabutowari = createItem('Kabutowari Sword', 'SR', [Sealing,Helmet], 'Kabutowari.png', ['9% Spell Damage','30 Strength','9% Armor Penetration']);
+var Doom = createItem('Doom Blade', 'SR', [Sealing,Boots], 'Doom.png', ['9% Spell Damage','30 Agility','250 Damage']);
+var Mask = createItem('Mask', 'SR', [Sealing,Cloth], 'Mask.png', ['9% Spell Damage','3200 Hp','First hit on enemy silence for 3s']);
+var Fire = createItem('Fire Coat', 'SR', [Fighter,Fighter], 'Fire.png', ['30 Armor','When hit, 50% to block 800 damages']);
+var Thornmail = createItem('Thornmail', 'SR', [Fighter,Helmet], 'Thornmail.png', ['15 Armor','30 Strength','When hit, returns 15% damages to attacker']);
+var Coat = createItem('Coat', 'SR', [Fighter,Boots], 'Coat.png', ['15 Armor','30 Agility','180 Chenzen']);
+var AkatsukiCloak = createItem('Akatsuki Cloak', 'SR', [Fighter,Cloth], 'AkatsukiCloak.png', ['15 Armor','3200 Hp','If health drops below 25%, allies in 1000 range heal for 2000 hp']);
+var Kubiribocho = createItem('Kubiribocho Sword', 'SR', [Helmet,Helmet], 'Kubiribocho.png', ['60 Strength','15% Lifesteal']);
+var Wind = createItem('Wind Sword', 'SR', [Helmet,Boots], 'Wind.png', ['30 Strength','30 Agility','30% Attack Speed']);
+var AkatsukiCourt = createItem('Akatsuki Court', 'SR', [Helmet,Cloth], 'AkatsukiCourt.png', ['30 Strength','3200 Hp','Gain shield against physical damages of 5% of your max hp after killing an enemy (stackable)']);
+var Jounin = createItem('Jounin Boots', 'SR', [Boots,Boots], 'Jounin.png', ['60 Agility','80 Movespeed (stackable)']);
+var Shibuki = createItem('Shibuki Sword', 'SR', [Boots,Cloth], 'Shibuki.png', ['30 Agility','3200 Hp','12% Critical Strike (Critical strike is 100% bonus damage on attack)']);
+var Samurai = createItem('Samurai Armor', 'SR', [Cloth,Cloth], 'Samurai.png', ['6400 Hp','If you die, revive with 10% hp']);
+}
+
 // Fonction affiche profil d'un ninja
 function profilNinja(btn) {
 	var ninja = ninjaDict[btn.value];
@@ -273,6 +371,83 @@ function profilNinja(btn) {
 		document.getElementById("Page-Profil-Role").innerHTML = 'Role: ' + ninja.role[0] + ' + ' + ninja.role[1];
 	}
 	refreshCombo(ninja);
+}
+
+// Fonction affiche profil d'un item
+function profilItem(btn) {
+	var item = itemDict[btn.value];
+	displayedItem = item;
+	changePage("Page-Profil-Item");
+	document.getElementById("Page-Profil-Item-Image").src = item.src;
+	document.getElementById("Page-Profil-Nom-Item").innerHTML = item.nom;
+	document.getElementById("Page-Profil-Item-Rarity-Image").src = rarityImageDict[item.rarity];
+	var effectsListe = document.getElementById("Page-Profil-Item-Effects");
+	effectsListe.innerHTML = "";
+	var h1;
+	var br = document.createElement("br");
+	for (var i in item.effects) {
+		h1 = document.createElement("h1");
+		effectsListe.appendChild(h1)
+		h1.innerHTML = item.effects[i];
+		effectsListe.appendChild(br);
+	}
+	if (item.rarity == 'R') {
+		document.getElementById("Page-Profil-Item-Fusion").style.display = 'none';
+		document.getElementById("Page-Profil-Item-Fusion-Text").style.display = 'none';
+		var fusionListDiv = document.getElementById("Page-Profil-Item-Fusion-List");
+		fusionListDiv.style.display = 'block';
+		document.getElementById("Page-Profil-Item-Fusion-List-Text").style.display = 'block';
+		fusionListDiv.innerHTML = "";
+		for (var j in item.required) {
+			var tmpItem = item.required[j];
+			var btn = document.createElement("input");
+			btn.type = "image";
+			btn.value = tmpItem.nom
+			btn.src = tmpItem.src
+			btn.onclick = function() {
+				profilItem(this);
+			}
+			var br = document.createElement("br");
+			fusionListDiv.appendChild(btn);
+			var tmp = document.createElement('span');
+			tmp.innerHTML = " = ";
+			fusionListDiv.appendChild(tmp);
+			for (var k in tmpItem.fusion) {
+				var btn = document.createElement("input");
+				btn.type = "image";
+				btn.value = tmpItem.fusion[k].nom
+				btn.src = tmpItem.fusion[k].src
+				btn.onclick = function() {
+					profilItem(this);
+				}
+				fusionListDiv.appendChild(btn);
+				if (k == 0) {
+					var tmp2 = document.createElement('span');
+					tmp2.innerHTML = " + ";
+					fusionListDiv.appendChild(tmp2);
+				}
+			}
+			fusionListDiv.appendChild(br);
+		}
+	}
+	else {
+		document.getElementById("Page-Profil-Item-Fusion-List").style.display = 'none';
+		document.getElementById("Page-Profil-Item-Fusion-List-Text").style.display = 'none';
+		var fusionDiv = document.getElementById("Page-Profil-Item-Fusion");
+		fusionDiv.style.display = 'block';
+		document.getElementById("Page-Profil-Item-Fusion-Text").style.display = 'block';
+		fusionDiv.innerHTML = "";
+		for (var j in item.fusion) {
+			var btn = document.createElement("input");
+			btn.type = "image";
+			btn.value = item.fusion[j].nom
+			btn.src = item.fusion[j].src
+			btn.onclick = function() {
+				profilItem(this);
+			}
+			fusionDiv.appendChild(btn);
+		}
+	}
 }
 
 // Fonction qui refresh l'affichage des combos dans sur le profil ninja
@@ -335,6 +510,13 @@ function createNinja(nom, range, stat, att, def, rar, rol, src) {
 	return ninja;
 }
 
+// Fonction qui créer un spell
+function createSpell(ninja, type, nom, desc) {
+	var spell = new Spell(nom, type, desc);
+	ninja.spells.push(spell);
+	return spell;
+}
+
 // Fonction qui créer un combo
 function createCombo(comboName, ninjalist, type) {
 	var combo = new Combo(comboName, ninjalist, type);
@@ -342,6 +524,20 @@ function createCombo(comboName, ninjalist, type) {
 		ninjalist[i].add_combo(combo);
 	}
 	return combo;
+}
+
+// Fonction qui créer un item
+function createItem(name, rar, fus, icon, eff) {
+	var item = new Item(name, rar, fus, icon, eff);
+	itemDict[name] = item;
+	itemList.push(item);
+	if (fus[0] != 'None') {
+		fus[0].required.push(item);
+		if (fus[0] != fus[1]) {
+			fus[1].required.push(item);
+		}
+	}
+	return item;
 }
 
 // Fonction qui filtre les ninjas
@@ -361,14 +557,14 @@ function filtre(type, click) {
 	}
 	// On update le texte indiquant les filtres utilisés
 	if (filtreList.length == 0) {
-		document.getElementById("Page-Menu-Filtres-Texte").innerHTML = 'Filtre: Aucun';
+		document.getElementById("Page-Menu-Filtres-Texte").innerHTML = 'Filter: None';
 	}
 	else {
 		var texte = '';
 		for (var i=0; i<filtreList.length; i++) {
 			texte = texte + filtreList[i] + ' ';
 		}
-		document.getElementById("Page-Menu-Filtres-Texte").innerHTML = 'Filtre: ' + texte;
+		document.getElementById("Page-Menu-Filtres-Texte").innerHTML = 'Filter: ' + texte;
 	}
 	// On clear la liste des ninjas
 	var div = document.getElementById("Page-Menu-Liste-Ninja");
@@ -460,11 +656,37 @@ function afficherNinjaList() {
 	}
 }
 
+// Fonction qui affiche tout les items dans le menu principal
+function afficherItemList() {
+	var compteur = 0;
+	var div = document.getElementById("Page-Menu-Liste-Item");
+	var btn;
+	for (var i in itemList) {
+		btn = document.createElement("input");
+		btn.type = "image";
+		btn.src = itemList[i].src;
+		btn.value = itemList[i].nom;
+		btn.onclick = function() {
+			profilItem(this);
+		}
+		div.appendChild(btn);
+		compteur++;
+		if (compteur == 8) {
+			var br = document.createElement("br");
+			div.appendChild(br);
+			compteur = 0;
+		}
+	}
+}
+
 // Fonctions des boutons (hors ninja)
 $('input').mousedown(function(click){
 	var id = click.target.id;
-	if (id == "Page-Profil-Retour") {
-		changePage("Page-Menu");
+	if (id == "Page-Profil-Retour"){
+		changePage("Page-Menu-Ninja");
+	}
+	else if (id == "Page-Item-Retour") {
+		changePage("Page-Menu-Item");
 	}
 	else if (id == "Page-Menu-Filtre-Force") {
 		filtre('Force', click.which);
@@ -518,3 +740,4 @@ $('input').mousedown(function(click){
 
 // Affichage du menu principal
 afficherNinjaList();
+afficherItemList();
