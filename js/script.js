@@ -135,7 +135,7 @@ boutonNinjaListToggle.onclick = function(){
 	changePage('Page-Menu-Ninja');
 }
 
-// Création des ninja
+// Création des ninja (anciens et nouveaux)
 {
 var Asuma = createNinja('Asuma Sarutobi',0,'A','Air','Feu','SR',['DPS'],'Asuma.png');
 var Ay = createNinja('Ay',0,'F','Foudre','Foudre','SSR',['BURST'],'Ay.png');
@@ -215,14 +215,14 @@ var Zetsu = createNinja('Zetsu',600,'A','Terre','Terre','SR',['DPS', 'SUPPORT'],
 var Unknown = createNinja('Unknown',0,'A','God','God','USR',[],'Unknown.png');
 }
 
-// Listes des spells
+// Listes des spells (nouveaux)
 {
 var Poongdun = createSpell(Asuma,'DPS','Poogdun Nomination','When hit, Levelx10 damage, 10 attacks, 250 range [100-1000] damage');
 var Hwadun = createSpell(Asuma,'','','');
 var Hwadun = createSpell(Asuma,'','','');
 }
 
-// Listes des combos
+// Listes des combos (anciens et nouveaux)
 {
 var Best = createCombo('Best', [Kiba, Choji], 'new');
 var Leica = createCombo('Leica', [Darui, Ay], 'new');
@@ -296,12 +296,12 @@ var Strongest = createCombo('Strongest Ninjas', [Hashirama, Madara], 'both');
 var Uchiha = createCombo('Uchiha Clan', [Madara, Itachi, Shisui, Obito, Sasuke], 'old');
 }
 
-// Description des combos
+// Description des combos (nouveaux)
 {
 
 }
 
-// Listes des items nouveaux
+// Listes des items (nouveaux)
 {
 var Kunai = createItem('Kunai', 'R', ['None'], 'Kunai.png', ['150 Dmg']);
 var Metal = createItem('Metal Needle', 'R', ['None'], 'Metal.png', ['15% Attack Speed']);
