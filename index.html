@@ -10,27 +10,43 @@
 <body>
 	<!-- Page Menu Principal -->
     <div id="Page-Menu" style="text-align: center">
-		<div style="display:flex; justify-content:center;">
-			<input id="Page-Menu-Filtre-Force" type="image" src="src/Force.png"/>
-			<input id="Page-Menu-Filtre-Agil" type="image" src="src/Agil.png"/>
-			<input id="Page-Menu-Filtre-Intel" type="image" src="src/Intel.png"/>
-			<input id="Page-Menu-Filtre-Ranged" type="image" src="src/Ranged.png"/>
-			<input id="Page-Menu-Filtre-Melee" type="image" src="src/Melee.png"/>
-			<input id="Page-Menu-Filtre-R" type="image" src="src/R.png"/>
-			<input id="Page-Menu-Filtre-SR" type="image" src="src/SR.png"/>
-			<input id="Page-Menu-Filtre-SSR" type="image" src="src/SSR.png"/>
-			<input id="Page-Menu-Filtre-USR" type="image" src="src/USR.png"/>
-			<input id="Page-Menu-Filtre-DPS" type="image" src="src/DPS.png"/>
-			<input id="Page-Menu-Filtre-BURST" type="image" src="src/Burst.png"/>
-			<input id="Page-Menu-Filtre-TANK" type="image" src="src/Tank.png"/>
-			<input id="Page-Menu-Filtre-AOE" type="image" src="src/AOE.png"/>
-			<input id="Page-Menu-Filtre-STUN" type="image" src="src/Stun.png"/>
-			<input id="Page-Menu-Filtre-SUPPORT" type="image" src="src/Support.png"/>
-			<input id="Page-Menu-Filtre-NEW" type="image" src="src/New.png"/>
+		<!-- Page Ninja List -->
+		<div id="Page-Menu-Ninja">
+			<div style="display:flex; justify-content:center;">
+				<input id="Page-Menu-Filtre-Force" type="image" src="src/Force.png"/>
+				<input id="Page-Menu-Filtre-Agil" type="image" src="src/Agil.png"/>
+				<input id="Page-Menu-Filtre-Intel" type="image" src="src/Intel.png"/>
+				<input id="Page-Menu-Filtre-Ranged" type="image" src="src/Ranged.png"/>
+				<input id="Page-Menu-Filtre-Melee" type="image" src="src/Melee.png"/>
+				<input id="Page-Menu-Filtre-R" type="image" src="src/R.png"/>
+				<input id="Page-Menu-Filtre-SR" type="image" src="src/SR.png"/>
+				<input id="Page-Menu-Filtre-SSR" type="image" src="src/SSR.png"/>
+				<input id="Page-Menu-Filtre-USR" type="image" src="src/USR.png"/>
+				<input id="Page-Menu-Filtre-DPS" type="image" src="src/DPS.png"/>
+				<input id="Page-Menu-Filtre-BURST" type="image" src="src/Burst.png"/>
+				<input id="Page-Menu-Filtre-TANK" type="image" src="src/Tank.png"/>
+				<input id="Page-Menu-Filtre-AOE" type="image" src="src/AOE.png"/>
+				<input id="Page-Menu-Filtre-STUN" type="image" src="src/Stun.png"/>
+				<input id="Page-Menu-Filtre-SUPPORT" type="image" src="src/Support.png"/>
+				<input id="Page-Menu-Filtre-NEW" type="image" src="src/New.png"/>
+			</div>
+			<br>
+			<div style="display:flex; justify-content:center;">
+				<button id="Bouton-Toggle-Item-List">Item List</button>
+			</div>
+			<h1 id="Page-Menu-Filtres-Texte">Filter: None</h1>
+			<h1>Ninja List:</h1>
+			<div id="Page-Menu-Liste-Ninja"></div>
 		</div>
-		<h1 id="Page-Menu-Filtres-Texte">Filtre: Aucun</h1>
-		<h1>Listes des ninjas:</h1>
-		<div id="Page-Menu-Liste-Ninja"></div>
+		<!-- Page Item List -->
+		<div id="Page-Menu-Item" style="display:none;">
+			<div style="display:flex; justify-content:center;">
+				<button id="Bouton-Toggle-Ninja-List">Ninja List</button>
+			</div>
+			<h1 id="Page-Menu-Filtres-Texte">Filter: None</h1>
+			<h1>Item List:</h1>
+			<div id="Page-Menu-Liste-Item"></div>
+		</div>
 	</div>
 	<!-- Page Profil Ninja -->
 	<div id="Page-Profil-Ninja" style="display:none; text-align: center;">	
@@ -61,6 +77,31 @@
 		</div>
 		<br>
 		<div id="Page-Profil-Combo-List">
+		</div>
+	</div>
+	<!-- Page Profil Item -->
+	<div id="Page-Profil-Item" style="display:none; text-align: center;">	
+		<div>
+			<input id="Page-Item-Retour" type="image" src="src/Back.png" style="display:flex; float:left;"/>
+			<div style="display:flex; justify-content:center; float:center;">
+				<h1 id="Page-Profil-Nom-Item" >Samehada Sword</h1>
+				<input id="Page-Profil-Item-Rarity-Image" type="image" src="src/SR.png"/>
+			</div>
+		</div>
+		<br>
+		<input id="Page-Profil-Item-Image" type="image" src="src/Samehada.png"/>
+		<br>
+		<div style="display:flex; justify-content:center;">
+			<h1>Effects:</h1>
+		</div>
+		<br>
+		<div id="Page-Profil-Item-Effects">
+		</div>
+		<h1 id="Page-Profil-Item-Fusion-List-Text" >Fusion List:</h1>
+		<div id="Page-Profil-Item-Fusion-List">
+		</div>
+		<h1 id="Page-Profil-Item-Fusion-Text" >Fusion:</h1>
+		<div id="Page-Profil-Item-Fusion">
 		</div>
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
