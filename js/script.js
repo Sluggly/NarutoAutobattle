@@ -112,6 +112,7 @@ rarityImageDict['USR'] = 'src/USR.png';
 // Variables globales
 var page = document.getElementById("Page-Menu-Ninja");
 var old = true;
+var effectList = false;
 var displayedNinja = Hinata;
 var displayedItem = Samehada;
 
@@ -119,6 +120,7 @@ var displayedItem = Samehada;
 var boutonVersionProfil = document.getElementById("Bouton-Profil-Toggle-Combo");
 var boutonItemListToggle = document.getElementById("Bouton-Toggle-Item-List");
 var boutonNinjaListToggle = document.getElementById("Bouton-Toggle-Ninja-List");
+var boutonEffectListToggle = document.getElementById("Bouton-Toggle-Effect-List");
 
 // Clic sur le bouton qui change version profil
 boutonVersionProfil.onclick = function(){
@@ -133,6 +135,23 @@ boutonItemListToggle.onclick = function(){
 // Clic sur bouton affiche Item list
 boutonNinjaListToggle.onclick = function(){
 	changePage('Page-Menu-Ninja');
+}
+
+// Clic sur bouton affiche Effet List
+boutonEffectListToggle.onclick = function() {
+	if (effectList) {
+		document.getElementById("Page-Menu-Filtres-Texte").innerHTML = "Filter: None";
+		document.getElementById("Bouton-Toggle-Effect-List").innerHTML = "Show Effect List";
+		document.getElementById("Page-Menu-Effect-Liste-Item").style.display = "none";
+		document.getElementById("Page-Menu-Liste-Item").style.display = "block";
+	}
+	else {
+		document.getElementById("Page-Menu-Filtres-Texte").innerHTML = "Filter: Effect Liste";
+		document.getElementById("Bouton-Toggle-Effect-List").innerHTML = "Hide Effect List";
+		document.getElementById("Page-Menu-Liste-Item").style.display = "none";
+		document.getElementById("Page-Menu-Effect-Liste-Item").style.display = "block";
+	}
+	effectList = !effectList;
 }
 
 // Création des ninja (anciens et nouveaux)
@@ -672,7 +691,12 @@ function afficherNinjaList() {
 function afficherItemList() {
 	var compteur = 0;
 	var div = document.getElementById("Page-Menu-Liste-Item");
+	var div2 = document.getElementById("Page-Menu-Effect-Liste-Item");
+	//var div2 = document.getElementById("Page-Effect-Liste-Nom");
+	//var div3 = document.getElementById("Page-Effect-Liste-Icon");
+	//var div4 = document.getElementById("Page-Effect-Liste-Effect");
 	var btn;
+	var btn2;
 	for (var i in itemList) {
 		btn = document.createElement("input");
 		btn.type = "image";
@@ -683,10 +707,36 @@ function afficherItemList() {
 		}
 		div.appendChild(btn);
 		compteur++;
-		if (compteur == 8) {
+		if (compteur == 10) {
 			var br = document.createElement("br");
 			div.appendChild(br);
 			compteur = 0;
+		}
+		if (itemList[i].rarity == 'SR') {
+			btn2 = document.createElement("input");
+			btn2.type = "image";
+			btn2.src = itemList[i].src;
+			btn2.value = itemList[i].nom;
+			btn2.onclick = function() {
+				profilItem(this);
+			}
+			var tmpDiv = document.createElement("div");
+			tmpDiv.className = "row";
+			div2.appendChild(tmpDiv);
+			var tmpDiv2 = document.createElement("div");
+			tmpDiv2.className = "col-sm-auto my-auto";
+			tmpDiv2.innerHTML += itemList[i].nom;
+			tmpDiv.appendChild(tmpDiv2);
+			var tmpDiv3 = document.createElement("div");
+			tmpDiv3.className = "col- my-auto";
+			tmpDiv3.appendChild(btn2);
+			tmpDiv.appendChild(tmpDiv3);
+			var tmpDiv4 = document.createElement("div");
+			tmpDiv4.className = "col-md-auto my-auto";
+			tmpDiv4.innerHTML += itemList[i].effects[itemList[i].effects.length - 1];
+			tmpDiv.appendChild(tmpDiv4);
+			var br = document.createElement("br");
+			div2.appendChild(br);
 		}
 	}
 }
